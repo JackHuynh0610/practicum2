@@ -1,0 +1,44 @@
+package controller;
+
+import com.example.practicum2.model.User;
+import com.example.practicum2.service.AuthenticationService;
+import com.example.practicum2.service.TokenService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/auth")
+public class AuthenticationController {
+
+    private final AuthenticationService authenticationService;
+    private final TokenService tokenService;
+
+    @Autowired
+    public AuthenticationController(AuthenticationService authenticationService, TokenService tokenService) {
+        this.authenticationService = authenticationService;
+        this.tokenService = tokenService;
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody User user) {
+        try {
+            User registeredUser = authenticationService.register(user);
+            return ResponseEntity.ok(registeredUser);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Registration failed: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody User loginRequest) {
+        Authentication authentication = authenticationService.authenticate(
+                loginRequest.getUsername(), loginRequest.getPassword());
+        if (authentication != null) {
+            String token = tokenService.generateToken(authentication);
+            return ResponseEntity.ok(token);
+        }
+        return ResponseEntity.status(401).body("Invalid credentials");
+    }
+}
