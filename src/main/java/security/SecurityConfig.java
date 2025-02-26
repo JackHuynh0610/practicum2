@@ -2,6 +2,7 @@ package security;
 
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
+import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +39,12 @@ public class SecurityConfig {
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        return NimbusJwtDecoder.withPublicKey(rsaKey.toRSAPublicKey()).build();
+        try {
+            return NimbusJwtDecoder.withPublicKey(rsaKey.toRSAPublicKey()).build();
+        } catch (JOSEException e) {
+            e.printStackTrace();
+        }
+                return null;
     }
 
     @Bean
@@ -46,7 +52,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .antMatchers("/auth/**", "/").permitAll()
+                .requestMatchers("/auth/**", "/").permitAll()
                 .anyRequest().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
