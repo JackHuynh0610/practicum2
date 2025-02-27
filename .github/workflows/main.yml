@@ -33,7 +33,7 @@ jobs:
         run: mvn test || true  
 
       - name: Report Test Results
-        uses: dorny/test-reporter@v1
+        uses: mikepenz/action-junit-report@v1
         if: always()
         with:
           name: Maven Tests
