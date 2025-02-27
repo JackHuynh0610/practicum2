@@ -1,4 +1,4 @@
-package service;
+package com.ethandep0.practicum2.service;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

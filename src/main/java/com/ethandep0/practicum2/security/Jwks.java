@@ -1,4 +1,4 @@
-package security;
+package com.ethandep0.practicum2.security;
 
 import com.nimbusds.jose.jwk.RSAKey;
 import java.security.KeyPair;

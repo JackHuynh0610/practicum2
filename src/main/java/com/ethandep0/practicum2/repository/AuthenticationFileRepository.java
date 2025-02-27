@@ -1,8 +1,10 @@
-package repository;
+package com.ethandep0.practicum2.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+
+import com.ethandep0.practicum2.model.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +14,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
-import model.*;
 
 
 @Repository

@@ -1,6 +1,4 @@
-package service;
-import model.*;
-import repository.*;
+package com.ethandep0.practicum2.service;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
@@ -11,6 +9,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.ethandep0.practicum2.model.*;
+import com.ethandep0.practicum2.repository.*;
 
 import java.io.IOException;
 

@@ -1,7 +1,8 @@
-package controller;
+package com.ethandep0.practicum2.controller;
 
-import service.*;
 import org.springframework.web.bind.annotation.*;
+
+import com.ethandep0.practicum2.service.*;
 
 @RestController
 @CrossOrigin

@@ -1,4 +1,4 @@
-package model;
+package com.ethandep0.practicum2.model;
 
 public class User {
     private String username;

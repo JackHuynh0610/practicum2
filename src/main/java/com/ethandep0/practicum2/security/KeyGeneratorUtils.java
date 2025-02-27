@@ -1,4 +1,4 @@
-package security;
+package com.ethandep0.practicum2.security;
 
 import org.springframework.stereotype.Component;
 import java.security.KeyPair;

@@ -1,4 +1,4 @@
-package service;
+package com.ethandep0.practicum2.service;
 import org.springframework.stereotype.Service;
 
 @Service
